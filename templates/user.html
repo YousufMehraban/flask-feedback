@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}   {{user.username}}    {% endblock %}
+
+
+
+{% block content %}
+
+    {% if 'username' in session %}
+    <h1>User Information</h1>
+    <ul>
+        <li>Username: {{user.username}}</li>
+        <li>Email ID: {{user.email}}</li>
+        <li>First_Name: {{user.first_name}}</li>
+        <li>Last_Name: {{user.last_name}}</li>
+        <form action="/users/{{user.username}}/delete" method="post" style="display: inline;"><button class=" btn btn-sm btn-danger">Delete User</button></form>
+
+    </ul>
+
+    <h3>Feedbacks</h3>
+    {% for feedback in feedbacks %}
+
+    <p><b style="display: block;">{{feedback.title}}</b>
+         {{feedback.content}} 
+        <form action="/feedback/{{feedback.id}}/update" method="post" style="display: inline;"><button class=" btn btn-sm btn-success" >Edit</button></form>
+        <form action="/feedback/{{feedback.id}}/delete" method="post" style="display: inline;"><button class=" btn btn-sm btn-danger">Delete</button></form>
+        </p>
+
+    {% endfor %}
+
+        <form action="/users/{{user.username}}/feedback/add" method="post" style="display: inline;"><button class=" btn btn-sm btn-info">Add Feedback</button></form>
+
+    {% endif %}
+
+{% endblock %}

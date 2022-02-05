@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %}   Edit Feedback    {% endblock %}
+
+
+
+{% block content %}
+
+    {% if 'username' in session %}
+    <div class="container" style="margin-top: 4px;">
+    <form action="" method="post">
+        {{form.hidden_tag()}}
+        {% for  field in form if field.widget.input_type != 'hidden' %}
+        
+            <p class="">
+                {{field.label}} 
+                {{field (class_="form-control")}}
+            </p>
+
+        {% endfor %}
+        <button class="btn btn-success">Edit</button>
+    </form>
+    </div>
+    {% endif%}
+
+
+{% endblock %}
